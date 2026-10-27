@@ -1,0 +1,71 @@
+<section id="emotion-at-the-center-palette" aria-labelledby="emotion-title">
+  <style>
+    #emotion-at-the-center-palette {
+      color: var(--foreground);
+      --desert-sky: light-dark(#9fbfcb, #52707c);
+      --desert-pink: light-dark(#d8a5a0, #925e63);
+      --bone: light-dark(#e4d8bf, #9f927a);
+      --ochre: light-dark(#d6a956, #916c30);
+      --deep-blue: light-dark(#456e85, #8bb9ce);
+    }
+    #emotion-at-the-center-palette .map { display: block; width: 100%; height: auto; overflow: visible; }
+    #emotion-at-the-center-palette .line { fill: none; stroke: var(--border); stroke-width: 1.2; }
+    #emotion-at-the-center-palette .ring { opacity: .72; stroke: var(--foreground); stroke-width: 1.2; }
+    #emotion-at-the-center-palette .sky { fill: var(--desert-sky); }
+    #emotion-at-the-center-palette .pink { fill: var(--desert-pink); }
+    #emotion-at-the-center-palette .bone { fill: var(--bone); }
+    #emotion-at-the-center-palette .ochre { fill: var(--ochre); }
+    #emotion-at-the-center-palette .blue { fill: var(--deep-blue); }
+    #emotion-at-the-center-palette .core { fill: var(--deep-blue); stroke: var(--foreground); stroke-width: 1.6; }
+    #emotion-at-the-center-palette .word { fill: var(--foreground); font: 500 16px system-ui, sans-serif; letter-spacing: .04em; }
+    #emotion-at-the-center-palette .small { fill: var(--muted-foreground); font: 400 12px system-ui, sans-serif; letter-spacing: .03em; }
+    #emotion-at-the-center-palette .english { fill: var(--muted-foreground); font: 400 11px system-ui, sans-serif; letter-spacing: .04em; }
+    #emotion-at-the-center-palette .core-word { fill: var(--primary-foreground); font: 500 25px system-ui, sans-serif; letter-spacing: .12em; }
+    #emotion-at-the-center-palette .quote { margin: 0; text-align: center; }
+    #emotion-at-the-center-palette .quote + .quote { margin-top: .5rem; }
+    #emotion-at-the-center-palette .translation { margin: .2rem 0 0; color: var(--muted-foreground); text-align: center; }
+  </style>
+  <h2 id="emotion-title">感動を中心にする</h2>
+  <p class="translation">Put emotion at the center.</p>
+  <svg class="map" viewBox="0 0 720 590" role="img" aria-labelledby="map-title map-desc">
+    <title id="map-title">感動から表現が広がる地図</title>
+    <desc id="map-desc">中心に感動があり、記憶、違和感、夢の論理、コラージュ、絵画を通り、唯一無二と腹に来る表現へと広がる。</desc>
+    <path class="line" d="M360 286 L155 154" />
+    <path class="line" d="M360 286 L563 154" />
+    <path class="line" d="M360 286 L120 382" />
+    <path class="line" d="M360 286 L600 382" />
+    <path class="line" d="M360 286 L360 487" />
+    <circle class="ring bone" cx="155" cy="154" r="65" />
+    <circle class="ring pink" cx="563" cy="154" r="65" />
+    <circle class="ring ochre" cx="120" cy="382" r="65" />
+    <circle class="ring sky" cx="600" cy="382" r="65" />
+    <circle class="ring blue" cx="360" cy="487" r="75" />
+    <circle class="core" cx="360" cy="286" r="93" />
+    <text class="word" x="155" y="145" text-anchor="middle">記憶</text>
+    <text class="english" x="155" y="166" text-anchor="middle">MEMORY</text>
+    <text class="small" x="155" y="186" text-anchor="middle">現実の断片</text>
+    <text class="english" x="155" y="204" text-anchor="middle">fragments of reality</text>
+    <text class="word" x="563" y="145" text-anchor="middle">違和感</text>
+    <text class="english" x="563" y="166" text-anchor="middle">DISSONANCE</text>
+    <text class="small" x="563" y="186" text-anchor="middle">配置のずれ</text>
+    <text class="english" x="563" y="204" text-anchor="middle">a shift in placement</text>
+    <text class="word" x="120" y="367" text-anchor="middle">夢の論理</text>
+    <text class="english" x="120" y="388" text-anchor="middle">DREAM LOGIC</text>
+    <text class="small" x="120" y="409" text-anchor="middle">この世界のはずなのに</text>
+    <text class="english" x="120" y="427" text-anchor="middle">yet this is our world</text>
+    <text class="word" x="600" y="367" text-anchor="middle">コラージュ</text>
+    <text class="english" x="600" y="388" text-anchor="middle">COLLAGE</text>
+    <text class="small" x="600" y="409" text-anchor="middle">断片を衝突させる</text>
+    <text class="english" x="600" y="427" text-anchor="middle">make fragments collide</text>
+    <text class="word" x="360" y="468" text-anchor="middle">絵画</text>
+    <text class="english" x="360" y="489" text-anchor="middle">PAINTING</text>
+    <text class="small" x="360" y="510" text-anchor="middle">一枚の夢として定着する</text>
+    <text class="english" x="360" y="528" text-anchor="middle">becomes one complete dream</text>
+    <text class="core-word" x="360" y="283" text-anchor="middle">感動</text>
+    <text class="english" x="360" y="309" text-anchor="middle">EMOTION</text>
+  </svg>
+  <p class="quote">シュールは「この世界のはずなのに、夢の論理が侵入している」。</p>
+  <p class="translation">Surrealism is when dream logic enters what should be this world.</p>
+  <p class="quote">美しいかどうかではなく、腹に来るか。</p>
+  <p class="translation">Not whether it is beautiful, but whether it hits you in the gut.</p>
+</section>

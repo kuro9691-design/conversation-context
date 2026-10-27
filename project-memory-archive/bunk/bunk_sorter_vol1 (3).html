@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>BUNK Vol.1 画像振り分けツール</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", sans-serif; max-width: 720px; margin: 24px auto; padding: 0 16px; color: #222; }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  p.note { color: #666; font-size: 13px; line-height: 1.6; }
+  .zone { display: flex; align-items: center; gap: 12px; border: 2px dashed #ccc; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; transition: background 0.15s, border-color 0.15s; cursor: pointer; }
+  .zone.dragover { background: #eef6ff; border-color: #4a90d9; }
+  .zone.done { border-style: solid; border-color: #4caf50; background: #f2fbf2; }
+  .pos { font-weight: 600; font-size: 14px; width: 56px; text-align: center; color: #555; flex-shrink: 0; }
+  .thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 6px; display: none; border: 1px solid #ddd; flex-shrink: 0; }
+  .label { flex: 1; }
+  .label .jp { font-size: 14px; font-weight: 500; }
+  .label .fname { font-size: 11px; color: #888; font-family: monospace; }
+  .status { font-size: 12px; color: #4caf50; display: none; white-space: nowrap; }
+  input[type=file] { display: none; }
+  #progress { font-size: 13px; color: #666; margin-top: 12px; }
+</style>
+</head>
+<body>
+
+<h1>BUNK Vol.1 画像振り分けツール</h1>
+<p class="note">
+  この回用に並び順を固定済みです。選ぶ操作は不要、画像を見て合う枠にドラッグ＆ドロップ（またはタップして選択）するだけです。<br>
+  Chromeの設定で「ダウンロード前に保存先を確認する」をオンにしておくと確実です。
+</p>
+
+<div id="zones"></div>
+<div id="progress">0 / 10 完了</div>
+
+<script>
+const ZONES = [{"posLabel": "表紙", "jp": "表紙", "filename": "vol1_00_cover.png"}, {"posLabel": "1枚目", "jp": "街並み（舞台提示・引き）", "filename": "vol1_01.png"}, {"posLabel": "2枚目", "jp": "外観（対象に近づく）", "filename": "vol1_02.png"}, {"posLabel": "3枚目", "jp": "起源のもの（インサート・物）", "filename": "vol1_03.png"}, {"posLabel": "4枚目", "jp": "室内（本題・ワンポイント）", "filename": "vol1_04.png"}, {"posLabel": "5枚目", "jp": "象徴的な物（極寄りインサート）", "filename": "vol1_05.png"}, {"posLabel": "6枚目", "jp": "現場（手持ち風ミディアム）", "filename": "vol1_06.png"}, {"posLabel": "7枚目", "jp": "人物（一人に寄る）", "filename": "vol1_07.png"}, {"posLabel": "8枚目", "jp": "クライマックス（低いワイド）", "filename": "vol1_08.png"}, {"posLabel": "9枚目", "jp": "無人（固定ワイド・締め）", "filename": "vol1_09.png"}];
+const zonesEl = document.getElementById("zones");
+const progressEl = document.getElementById("progress");
+let doneCount = 0;
+
+ZONES.forEach((z, i) => {
+  const zone = document.createElement("div");
+  zone.className = "zone";
+  zone.innerHTML = `
+    <div class="pos">${z.posLabel}</div>
+    <img class="thumb" alt="">
+    <div class="label">
+      <div class="fname">${z.filename}</div>
+    </div>
+    <div class="status">保存済み ✓</div>
+    <input type="file" accept="image/*">
+  `;
+  const fileInput = zone.querySelector('input[type="file"]');
+  const thumb = zone.querySelector(".thumb");
+  const status = zone.querySelector(".status");
+
+  zone.addEventListener("click", () => fileInput.click());
+  zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("dragover"); });
+  zone.addEventListener("dragleave", () => zone.classList.remove("dragover"));
+  zone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    zone.classList.remove("dragover");
+    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0], zone, z, thumb, status);
+  });
+  fileInput.addEventListener("change", () => {
+    if (fileInput.files.length) handleFile(fileInput.files[0], zone, z, thumb, status);
+  });
+  zonesEl.appendChild(zone);
+});
+
+function handleFile(file, zone, z, thumb, status) {
+  const ext = (file.name.split(".").pop() || "png").toLowerCase();
+  const targetName = z.filename.replace(/\.\w+$/, "") + "." + ext;
+
+  const url = URL.createObjectURL(file);
+  thumb.src = url;
+  thumb.style.display = "block";
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = targetName;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  if (!zone.classList.contains("done")) {
+    doneCount++;
+    zone.classList.add("done");
+  }
+  status.style.display = "inline";
+  progressEl.textContent = `${doneCount} / 10 完了`;
+}
+</script>
+
+</body>
+</html>

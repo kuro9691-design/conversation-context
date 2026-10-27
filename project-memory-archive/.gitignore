@@ -1,0 +1,59 @@
+# Credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*credentials*
+*cookies*
+*token*
+*secrets*
+.claude/
+.codex/
+
+# Drive links and local metadata
+*.gdoc
+*.gsheet
+*.gslides
+desktop.ini
+Thumbs.db
+.codex-attachments/
+.codex-remote-attachments/
+
+# Caches and dependencies
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+tmp/
+temp/
+cache/
+output/
+
+# Large media/design sources
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.wav
+*.mp3
+*.psd
+*.psb
+*.afdesign
+*.afphoto
+*.ai
+*.blend
+*.zip
+*.7z
+*.rar
+
+# Credit and financial exports
+*信用情報*
+*カード明細*
+*口座明細*
+*bank-statement*
+*card-statement*
+*loan*
+*debt*
